@@ -3,7 +3,8 @@ import numpy as np
 import scipy.stats
 import matplotlib.pyplot as plt
 import seaborn as sns
-
+import plotnine as p9
+from plotnine import *
 
 df = pd.read_csv("EPL_20_21.csv")
 
@@ -50,6 +51,24 @@ attackers['High_G_xG'] = ((attackers['xG'] * attackers['Mins'])/90) / attackers[
 only2 = attackers[(attackers['Goals'] > 10)]
 
 only_shooters1 = only2[['Name', 'Goals', 'Mins', 'xG', 'High_G_xG']].sort_values(by= 'High_G_xG', ascending=True).head(10)
+
+plot = (
+    ggplot(only_shooters1) +
+    aes(x='reorder(Name, High_G_xG)', y='High_G_xG', fill='High_G_xG') +
+    geom_col(show_legend=False) +
+    coord_flip() +  # Flip axes to match your original seaborn style
+    labs(
+        title='Most Efficient Players (based on xG and Goals)',
+        x='Player Name',
+        y='Efficiency (xG per Goal)'
+    ) +
+    theme_bw()
+)
+plot.save("my_plot.png")  # ✅ Saves as an image
+import os
+os.system("open my_plot.png")  # ✅ Opens the image (Mac users)
+plt.show()
+
 
 plt.figure(figsize=(12,6))
 sns.barplot(y=only_shooters1['Name'], x=only_shooters1['High_G_xG'], hue=only_shooters1['High_G_xG'], palette='Reds_r')
