@@ -5,6 +5,9 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import plotnine as p9
 from plotnine import *
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import r2_score, mean_squared_error
 
 df = pd.read_csv("EPL_20_21.csv")
 
@@ -116,3 +119,35 @@ plt.ylabel('Sum')
 plt.xlabel('Club')
 plt.show()
 
+
+# Clean and select features 
+Model = df[["Goals", "xG", "Mins"]].dropna()
+x = df[["xG", "Mins"]]
+y = df["Goals"]
+
+# Split the data
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.2, random_state = 42)
+
+# Fit the model
+model = LinearRegression()
+model.fit = (x_train, y_train)
+
+# Prediction
+y_pred = model.predict(x_test)
+
+#evaluate
+print("R^2 score: ", r2_score(y_test, y_pred))
+print("RMSE:", np.sqrt(mean_squared_error(y_test, y_pred)))
+
+
+
+# Inferential statistics 
+
+df["xG_per_90 = df["xG"] df/["Mins"] * 90
+
+fw = df[df["Position" == "FW"] ["xG_per_90].dropna()
+mf = df[df["Position" == "MF"] ["xG_per_90"].dropna()
+
+t_stat, p_value = scipy.stats.ttest(mf, fw)
+print("T-Statistic: ", t_stat)
+print("P-Value: ", p_value)
