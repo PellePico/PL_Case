@@ -67,9 +67,9 @@ plot = (
     ) +
     theme_bw()
 )
-plot.save("my_plot.png")  # ✅ Saves as an image
+plot.save("my_plot.png")  # Saves as an image
 import os
-os.system("open my_plot.png")  # ✅ Opens the image (Mac users)
+os.system("open my_plot.png")  # Opens the image (Mac users)
 plt.show()
 
 
