@@ -143,7 +143,7 @@ print("RMSE:", np.sqrt(mean_squared_error(y_test, y_pred)))
 
 # Inferential statistics 
 
-df["xG_per_90 = df["xG"] df/["Mins"] * 90
+df["xG_per_90"] = df["xG"] df/["Mins"] * 90
 
 fw = df[df["Position" == "FW"] ["xG_per_90].dropna()
 mf = df[df["Position" == "MF"] ["xG_per_90"].dropna()
