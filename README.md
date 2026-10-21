@@ -9,7 +9,7 @@ The quality of a chance is measured with **expected goals (xG)**: the probabilit
 goal, based on where and how it was taken. A season's xG is what an average finisher would have scored
 from the same chances.
 
-👉 **[Open the notebook](pl_2020_21_analysis.ipynb)** to read the full analysis with code and charts.
+**[Open the notebook](pl_2020_21_analysis.ipynb)** to read the full analysis with code and charts.
 
 ![Non-penalty goals vs xG](figures/goals_vs_xg.png)
 
